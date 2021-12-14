@@ -7,4 +7,7 @@ class AddForm(FlaskForm):
                            validators=[DataRequired(), Length(min=2, max=20)])
     email = StringField('Email',
                         validators=[DataRequired(), Email()])
+    phone = StringField('Phone',
+                        validators=[DataRequired()])
+                        
     submit = SubmitField('Sign Up')
