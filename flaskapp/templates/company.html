@@ -7,7 +7,19 @@
 
 {% block body %}
 <div class="container">
-    <h1 class="text-center">Company List</h1>
+  <br>
+  <form action="/company" method="POST" class="center-block">
+    <div class="form-row text-center align-items-center">
+        <div class="col-sm-6 my-1">
+            <label class="sr-only" for="content">Company_name</label>
+            <input type="text" class="form-control" required id="content" name="company_name" placeholder="Company Name">
+        </div>
+        <div class="col-auto my-1">
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </div>
+    </div>
+  </form>
+   <br>
     {% if companies|length>0 : %}
     <table class="table table-bordered">
         <thead>
@@ -34,17 +46,7 @@
       </table>
       {% endif %}
 
-      <form action="/" method="POST" class="">
-        <div class="form-row text-center align-items-center">
-            <div class="col-sm-6 my-1">
-                <label class="sr-only" for="content">Company_name</label>
-                <input type="text" class="form-control" required id="content" name="company_name" placeholder="Company Name">
-            </div>
-            <div class="col-auto my-1">
-                <button type="submit" class="btn btn-primary">Submit</button>
-            </div>
-        </div>
-      </form>
+      
 </div>
 
 {% endblock %}

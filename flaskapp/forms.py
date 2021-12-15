@@ -1,13 +1,20 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField, SubmitField, BooleanField
-from wtforms.validators import DataRequired, Length, Email, EqualTo
+from wtforms import StringField, SubmitField, BooleanField,FileField
+from wtforms.fields.numeric import IntegerField
+from wtforms.validators import DataRequired, Length, Email
 
 class AddForm(FlaskForm):
-    username = StringField('Username',
+    company_id = IntegerField('Company',validators=[DataRequired()])
+    name = StringField('Name',
                            validators=[DataRequired(), Length(min=2, max=20)])
+    username = StringField('Username',
+                           validators=[DataRequired(), Length(min=2, max=5)])
     email = StringField('Email',
                         validators=[DataRequired(), Email()])
     phone = StringField('Phone',
+                        validators=[DataRequired(),Length(min=10, max=10)])
+    dob = StringField('DOb',
                         validators=[DataRequired()])
-                        
-    submit = SubmitField('Sign Up')
+    image_file = FileField('Image')
+                            
+    submit = SubmitField('Add Employee')
