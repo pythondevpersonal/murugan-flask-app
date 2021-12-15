@@ -1,8 +1,8 @@
-# Flask Todo
+# Flask Employee Crud
 
-`Flask Todo` contains a working example of a Flask project with features:
+`Employee Crud` contains a working example of a Flask project with features:
  
-- TODO CRUD options 
+- Employee CRUD options 
 
 ### Installation and Set-up
 To view the app, open the live site link provided below on the README.
@@ -10,7 +10,7 @@ Here is a run through of how to set up the application:
 * **Step 1** : Clone this repository using **`git clone https://github.com/pythondevpersonal/murugan-flask-app.git`**, or downloading a ZIP file of the code.
 * **Step 2** : The repository, if downloaded as a .zip file will need to be extracted to your preferred location and opened
 * **Step 3** : Go to the project root directory and install the virtualenv library using pip an afterwards create a virtual environment. Run the following commands respectively:
-    * **`cd flask-own-boiler`**
+    * **`cd murugan-flask-app`**
     * **`pip install virtualenv`**
     * **`virtualenv env`**
     * **`env/bin/activate` or `env/Scripts/activate`**
