@@ -8,12 +8,12 @@ class AddForm(FlaskForm):
     name = StringField('Name',
                            validators=[DataRequired(), Length(min=2, max=20)])
     username = StringField('Username',
-                           validators=[DataRequired(), Length(min=2, max=5)])
+                           validators=[DataRequired(), Length(min=2, max=25)])
     email = StringField('Email',
                         validators=[DataRequired(), Email()])
     phone = StringField('Phone',
                         validators=[DataRequired(),Length(min=10, max=10)])
-    dob = StringField('DOb',
+    dob = StringField('DOB',
                         validators=[DataRequired()])
     image_file = FileField('Image')
                             

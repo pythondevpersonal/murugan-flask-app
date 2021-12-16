@@ -7,19 +7,29 @@
 
 {% block body %}
 <div class="row">
+    <legend class="col-md-8 offset-md-2 text-center border-bottom mb-4">Add Employee</legend>
+    <div class="clearfix"></div>
     <div class="col-md-4 offset-md-2">
         <form method="POST" action="">
             {{ form.hidden_tag() }}
-            { %print form.errors.items()%}  
+            
             <fieldset class="form-group">
-                <legend class="border-bottom mb-4">Add Employee</legend>
+                
                 <div class="form-group">
                     {{ form.company_id.label(class="form-control-label") }}
-                    <select class="form-control" id="company_id">
+                    <select class="form-control" name="company_id" id="company_id">
                         {% for company in companies %}
                         <option value= "{{company.id}}" SELECTED>{{company.company_name}}</option>"
                         {% endfor %}
                     </select>
+                    {% if form.company_id.errors %}
+                        
+                        <div class="invalid-feedback" style="display: block;">
+                            {% for error in form.company_id.errors %}
+                                <span>{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                    {% endif %}
                 </div>
                 <div class="form-group">
                     {{ form.name.label(class="form-control-label") }}
@@ -39,7 +49,6 @@
                     {{ form.username.label(class="form-control-label") }}
     
                     {% if form.username.errors %}
-                        12335654654
                         {{ form.username(class="form-control form-control is-invalid") }}
                         <div class="invalid-feedback">
                             {% for error in form.username.errors %}
@@ -50,30 +59,56 @@
                         {{ form.username(class="form-control form-control") }}
                     {% endif %}
                 </div>
-                <div class="form-group">
-                    {{ form.email.label(class="form-control-label") }}
-                    {% if form.email.errors %}
-                        {{ form.email(class="form-control is-invalid") }}
-                        <div class="invalid-feedback">
-                            {% for error in form.email.errors %}
-                                <span>{{ error }}</span>
-                            {% endfor %}
-                        </div>
-                    {% else %}
-                        {{ form.email(class="form-control") }}
-                    {% endif %}
-                </div>
+                
                
             </fieldset>
         
     </div>
     
     <div class="col-md-4 ">
-           
-            <div class="form-group">
-                {{ form.submit(class="btn btn-outline-info") }}
-            </div>
-        </form>
+        <div class="form-group">
+            {{ form.email.label(class="form-control-label") }}
+            {% if form.email.errors %}
+                {{ form.email(class="form-control is-invalid") }}
+                <div class="invalid-feedback">
+                    {% for error in form.email.errors %}
+                        <span>{{ error }}</span>
+                    {% endfor %}
+                </div>
+            {% else %}
+                {{ form.email(class="form-control") }}
+            {% endif %}
+        </div>
+        <div class="form-group">
+            {{ form.phone.label(class="form-control-label") }}
+            {% if form.phone.errors %}
+                {{ form.phone(class="form-control is-invalid") }}
+                <div class="invalid-feedback">
+                    {% for error in form.phone.errors %}
+                        <span>{{ error }}</span>
+                    {% endfor %}
+                </div>
+            {% else %}
+                {{ form.phone(class="form-control") }}
+            {% endif %}
+        </div>
+        <div class="form-group">
+            {{ form.dob.label(class="form-control-label") }}
+            {% if form.dob.errors %}
+                {{ form.dob(class="form-control is-invalid") }}
+                <div class="invalid-feedback">
+                    {% for error in form.dob.errors %}
+                        <span>{{ error }}</span>
+                    {% endfor %}
+                </div>
+            {% else %}
+                {{ form.dob(class="form-control", type="date") }}
+            {% endif %}
+        </div>
+        <div class="form-group">
+            {{ form.submit(class="btn btn-outline-info") }}
+        </div>
+    </form>
     </div>
     
 

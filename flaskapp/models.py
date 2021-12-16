@@ -12,11 +12,12 @@ class Company(db.Model):
 
 class Employee(db.Model):
     id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(20), nullable=False)
     username = db.Column(db.String(20), unique=True, nullable=False)
     email = db.Column(db.String(120), unique=True, nullable=False)
     phone = db.Column(db.String(20), unique=True, nullable=False)
-    dob = db.Column(db.DateTime, nullable=False)
-    date_employed = db.Column(db.DateTime, default=datetime)
+    dob = db.Column(db.Date, nullable=False)
+    date_employed = db.Column(db.DateTime, default=datetime.utcnow)
     image_file = db.Column(db.String(20), nullable=False, default='default.jpg')
     company_id = db.Column(db.Integer, db.ForeignKey('company.id'), nullable=False)
     salary = db.Column(db.Integer, default=0)
