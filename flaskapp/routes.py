@@ -58,3 +58,43 @@ def add():
        
     companies = Company.query.order_by(Company.date_created).all()
     return render_template('create.html', title='Create', form=form,companies=companies)
+
+@app.route('/employee/update/<int:id>', methods=['GET','POST'])
+def update(id):
+    form = AddForm()
+    if request.method == 'POST' and form.validate_on_submit():
+        employee = Employee.query.get_or_404(id)
+        employee.username = request.form['username']
+        employee.name = request.form['name']
+        employee.email = request.form['email']
+        employee.phone = request.form['phone']
+        splitted_text= request.form['dob'].split('-')
+        employee.dob = datetime(int(splitted_text[0]), int(splitted_text[1]), int(splitted_text[2]))
+        employee.date_employed = datetime(2012, 3, 3, 10, 10, 10)
+        image_file = 'test'   
+        employee.company_id = request.form['company_id']
+
+        try:
+             db.session.commit()
+             flash(f'Account updated for {form.username.data}!', 'success')
+             return redirect('/')
+        except:
+            return 'There is an error'
+
+    else:
+        employee_to_view = Employee.query.get_or_404(id)
+        companies = Company.query.order_by(Company.date_created).all()
+        return render_template('view_employee.html',employee=employee_to_view,form=form,companies=companies)
+
+
+@app.route('/employee/delete/<int:id>', methods=['GET'])
+def delete(id):
+    employee_to_delete = Employee.query.get_or_404(id)
+
+    try:
+        db.session.delete(employee_to_delete)
+        db.session.commit()
+        flash(f'Account deleted for {employee_to_delete.username}!', 'success')
+        return redirect('/')
+    except:
+        return "error in deletion"
